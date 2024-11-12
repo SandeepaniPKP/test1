@@ -1,0 +1,43 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.example.test1"
+    compileSdk = 34  // Set this to the latest stable SDK version, e.g., 33
+
+    ndkVersion = "25.1.8937393"  // Set the required NDK version explicitly
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    defaultConfig {
+        applicationId = "com.example.test1"
+        minSdk = 21          // Set this based on your project's requirements, typically 21 or higher
+        targetSdk = 33       // Set this to the latest stable SDK version, e.g., 33
+        versionCode = 1      // Update as needed for app versioning
+        versionName = "1.0"  // Update as needed for app versioning
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug  // Update this if you have a release signing config
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
